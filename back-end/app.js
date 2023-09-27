@@ -78,5 +78,32 @@ app.post('/messages/save', async (req, res) => {
   }
 })
 
+const aboutMeData = {
+  name: 'Ana Sofia Pacheco',
+  pic_url: 'https://i.ibb.co/0q0ZRkm/profilepic2.jpg',
+  about:
+    'I was born in Goiânia, Brazil, (aka the middle of nowhere) and moved to the US when I was 16 ' +
+    'to pursue a better education. Right now, I am a senior at NYU majoring in Computer Science and minoring ' +
+    'in Mathematics and Physics. I am hoping to pursue a career in Software Engineering (someone hire me please) ' +
+    'and to be able to work in developing a product that I find meaningful and impactful. I am also interested ' +
+    "in the intersection of technology and other fields, such as classics and astrophysics. In my free time, "+
+    "I enjoy reading, playing chess, and eating brigadeiros.",
+}
+
+app.get('/about', async (req, res) => {
+  try {
+    res.json({
+      data: aboutMeData,
+      status: 'all good',
+    })
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to retrieve messages from the database',
+    })
+  }
+})
+
 // export the express app we created to make it available to other modules
 module.exports = app // CommonJS export style!
